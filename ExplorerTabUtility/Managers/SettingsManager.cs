@@ -1,10 +1,8 @@
 using System;
 using System.IO;
-using System.Windows;
 using System.Text.Json;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using ExplorerTabUtility.Models;
 using ExplorerTabUtility.Helpers;
 
 namespace ExplorerTabUtility.Managers;
@@ -46,28 +44,6 @@ public static class SettingsManager
         StaticPropertyChanged?.Invoke(null, new PropertyChangedEventArgs(propertyName));
     }
 
-    public static bool IsMouseHookActive
-    {
-        get => Settings.MouseHook;
-        set
-        {
-            Settings.MouseHook = value;
-            SaveSettings();
-            NotifyStaticPropertyChanged();
-        }
-    }
-
-    public static bool IsKeyboardHookActive
-    {
-        get => Settings.KeyboardHook;
-        set
-        {
-            Settings.KeyboardHook = value;
-            SaveSettings();
-            NotifyStaticPropertyChanged();
-        }
-    }
-
     public static bool IsWindowHookActive
     {
         get => Settings.WindowHook;
@@ -90,56 +66,6 @@ public static class SettingsManager
         }
     }
 
-    public static string HotKeyProfiles
-    {
-        get => Settings.HotKeyProfiles;
-        set
-        {
-            Settings.HotKeyProfiles = value;
-            SaveSettings();
-        }
-    }
-
-    public static Size FormSize
-    {
-        get => Settings.FormSize;
-        set
-        {
-            Settings.FormSize = value;
-            SaveSettings();
-        }
-    }
-
-    public static bool SaveProfilesOnExit
-    {
-        get => Settings.SaveProfilesOnExit;
-        set
-        {
-            Settings.SaveProfilesOnExit = value;
-            SaveSettings();
-        }
-    }
-
-    public static bool IsFirstRun
-    {
-        get => Settings.IsFirstRun;
-        set
-        {
-            Settings.IsFirstRun = value;
-            SaveSettings();
-        }
-    }
-
-    public static bool IsTrayIconHidden
-    {
-        get => Settings.IsTrayIconHidden;
-        set
-        {
-            Settings.IsTrayIconHidden = value;
-            SaveSettings();
-        }
-    }
-
     public static bool HaveThemeIssue
     {
         get => Settings.HaveThemeIssue;
@@ -149,47 +75,6 @@ public static class SettingsManager
             SaveSettings();
         }
     }
-
-    public static bool AutoUpdate
-    {
-        get => Settings.AutoUpdate;
-        set
-        {
-            Settings.AutoUpdate = value;
-            SaveSettings();
-        }
-    }
-
-    public static bool SaveClosedHistory
-    {
-        get => Settings.SaveClosedWindows;
-        set
-        {
-            Settings.SaveClosedWindows = value;
-            SaveSettings();
-        }
-    }
-
-    public static bool RestorePreviousWindows
-    {
-        get => Settings.RestorePreviousWindows;
-        set
-        {
-            Settings.RestorePreviousWindows = value;
-            SaveSettings();
-        }
-    }
-
-    public static WindowRecord[]? ClosedWindows
-    {
-        get => Settings.ClosedWindows;
-        set
-        {
-            Settings.ClosedWindows = value;
-            SaveSettings();
-        }
-    }
-
 
     public static void SaveSettings()
     {
@@ -207,18 +92,7 @@ public static class SettingsManager
 
 internal class AppSettings
 {
-    public bool MouseHook { get; set; }
-    public bool KeyboardHook { get; set; } = true;
     public bool WindowHook { get; set; } = true;
     public bool ReuseTabs { get; set; } = true;
-    public Size FormSize { get; set; } = new(852, 402);
-    public bool SaveProfilesOnExit { get; set; } = true;
-    public bool IsFirstRun { get; set; } = true;
-    public bool IsTrayIconHidden { get; set; }
     public bool HaveThemeIssue { get; set; }
-    public bool AutoUpdate { get; set; }
-    public string HotKeyProfiles { get; set; } = Constants.DefaultHotKeyProfiles;
-    public bool SaveClosedWindows { get; set; }
-    public bool RestorePreviousWindows { get; set; }
-    public WindowRecord[]? ClosedWindows { get; set; }
 }

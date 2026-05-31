@@ -6,7 +6,6 @@ using System.Text;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using ExplorerTabUtility.Interop;
 using ExplorerTabUtility.Helpers;
 
 namespace ExplorerTabUtility.WinAPI;
@@ -114,8 +113,6 @@ public static class WinApi
     [DllImport("shell32.dll", CharSet = CharSet.Unicode)]
     public static extern int SHGetNameFromIDList(nint pidl, uint sigdnName, [MarshalAs(UnmanagedType.LPWStr)] out string? ppszName);
 
-    [DllImport("oleacc.dll")]
-    public static extern nint AccessibleObjectFromPoint(Point pt, [Out, MarshalAs(UnmanagedType.Interface)] out IAccessible accObj, [Out] out object ChildID);
 
     public static IEnumerable<nint> FindAllWindowsEx(string className, nint parent = 0, string? windowTitle = null)
     {
