@@ -86,6 +86,20 @@ Right-click tray icon -> check "Add to startup". Done.
 6. Restores file selection if applicable
 7. Closes the hidden original window
 
+  ---
+  .NET 运行时说明
+
+  本程序依赖 .NET 9.0 Desktop Runtime。如果双击 exe
+  无法启动或报错提示缺少运行时，请通过以下命令安装：
+
+  winget install Microsoft.DotNet.DesktopRuntime.9
+
+  注意：安装的是 Desktop Runtime（而非 SDK），安装后 dotnet 命令不会出现在 PATH
+  中，这是正常现象。只要 winget install 提示"已安装"或安装成功，即可直接运行
+  exe，无需额外配置环境变量。
+
+  ---
+
 ## Credits
 
 Trimmed from [ExplorerTabUtility](https://github.com/w4po/ExplorerTabUtility) by [w4po](https://github.com/w4po). Original project has many more features (hotkeys, tab search, duplicate/reopen tabs, etc). This version keeps only the core window-to-tab conversion for minimal footprint.
